@@ -10,5 +10,28 @@ import './Token.sol';
  */
 
 contract Crowdsale {
-	// YOUR CODE HERE
+
+  address public owner;
+  uint public initialTokens;
+  uint public tokensToWei;
+  uint private totalFunds;
+
+  modifier ownerOnly() {
+    require(msg.sender == owner);
+    _;
+  }
+
+  function Crowdsale(uint initialTokens, uint tokensToWei) {
+    owner = msg.sender;
+  }
+
+  function mintTokens(uint amount) ownerOnly {
+
+  }
+
+  function burnTokens(uint amount) ownerOnly {
+
+  }
+
+
 }
