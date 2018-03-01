@@ -1,4 +1,6 @@
 # MIDTERM: Launching an ICO
+This is Midterm ICO by [Aditiya Srivastava](https://github.com/indianwolverine), [Nathaniel Ng](https://github.com/nathanielng2017), and [Victor Cheng](https://github.com/victorychain).
+
 Welcome to the Blockchain for Developers DeCal's midterm assignment. You'll be designing your own ICO.
 
 ## Midterm Instructions
