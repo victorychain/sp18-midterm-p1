@@ -39,6 +39,8 @@ contract Crowdsale {
     tokensPerWei = _tokensPerWei;
     initialTokens = _initialTokens;
 
+    address token = new Token(initialTokens);
+
   }
 
   function mintTokens(uint amount) ownerOnly {
