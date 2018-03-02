@@ -9,5 +9,26 @@ import './interfaces/ERC20Interface.sol';
  */
 
 contract Token is ERC20Interface {
-	// YOUR CODE HERE
+	uint public totalSupply;
+	mapping (address => uint) public balance;
+
+  function Token(uint initialSupply) {
+      totalSupply = initialSupply;
+  }
+
+  function addTokens(uint amount) {
+    totalSupply += amount;
+  }
+
+  function removeTokens(uint amount) {
+    totalSupply -= amount;
+  }
+
+  function addToBalance(address buyer, uint amount) {
+    balance[buyer] += amount;
+  }
+
+  function removeFromBalance(address seller, uint amount) {
+    balance[buyer] -= amount;
+  }
 }
