@@ -37,13 +37,20 @@ contract Queue {
 	uint endingIndex = 0;
 	mapping(uint => address) indexToAddress;
 	mapping(address => uint) addressToIndex;
+	mapping(address => uint) addressToTimeConsumed;
+	uint public timeCap;
 
 	/* Add events */
 	// YOUR CODE HERE
+	event QueueRemoved(address removedQueueAdress);
+	event QueueAdded(address addedQueueAdress);
 
 	/* Add constructor */
 	// YOUR CODE HERE
 	// [Later]
+	function Queue(uint timeCapI) {
+		timeCap = timeCapI;
+	}
 
 	/* Returns the number of people waiting in line */
 	function qsize() constant returns(uint8) {
@@ -92,7 +99,19 @@ contract Queue {
 	 */
 	function checkTime() {
 		// YOUR CODE HERE
-		//[Later]
+
+			uint currentIndex = beginningIndex;
+			address currentAddress = indexToAddress[currentIndex];
+			uint currentTimeConsumed = now - addressToTimeConsumed[currentAddress]
+
+			while (currentTimeConsumed > timeCap) {
+				QueueRemoved(currentAddress);
+				addressToIndex[indexToAddress[beginningIndex]] = -1;
+				beginningIndex = (beginningIndex + 1) % size;
+				currentIndex = beginningIndex;
+				currentAddress = indexToAddress[currentIndex];
+				currentTimeConsumed = now - addressToTimeConsumed[currentAddress]
+			}
 
 	}
 	
@@ -104,6 +123,7 @@ contract Queue {
 		if (qsize == 1) {
 			return;
 		}
+		QueueRemoved(indexToAddress[beginningIndex]);
 		addressToIndex[indexToAddress[beginningIndex]] = -1;
 		beginningIndex = (beginningIndex + 1) % size;
 
@@ -119,7 +139,8 @@ contract Queue {
 		}
 		indexToAddress[endingIndex] = addr;
 		addressToIndex[msg.sender] = endingIndex;
+		QueueAdded(addr);
+		addressToTimeConsumed[msg.sender] = now;
 		endingIndex = (endingIndex + 1) % size;
-
 	}
 }
