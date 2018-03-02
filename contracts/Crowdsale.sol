@@ -12,6 +12,7 @@ import './Token.sol';
 contract Crowdsale {
 
   address public owner;
+  address public token;
   uint public initialTokens;
   uint public tokensPerWei;
   uint private totalFunds;
@@ -39,27 +40,31 @@ contract Crowdsale {
     tokensPerWei = _tokensPerWei;
     initialTokens = _initialTokens;
 
-    address token = new Token(initialTokens);
+    token = new Token(initialTokens);
 
   }
 
   function mintTokens(uint amount) ownerOnly {
     //add to totalSupply in Token.sol
+    token.addTokens(amount);
   }
 
   function burnTokens(uint amount) ownerOnly {
     //subtract from totalSupply in Token.sol
+    token.removeTokens(amount);
   }
 
   function buyTokens(uint amount) public timeConstraint {
     //increment token balance for msg.sender in Token.sol
     tokensSold += amount;
+    token.addToBalance(msg.sender, amount);
     TokenPurchased(msg.sender);
   }
 
   function refundTokens(uint amount) public timeConstraint {
     //decrement token balance for msg.sender in Token.sol
     tokensSold -= amount;
+    token.removeFromBalance(msg.sender, amount);
     TokenSold(msg.sender);
   }
 
