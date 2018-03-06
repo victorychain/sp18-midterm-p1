@@ -82,6 +82,22 @@ contract Token is ERC20Interface {
         Burn(_from, _value);
         return true;
     }
+
+    function addTokens(uint amount) {
+    	totalSupply = SafeMath.add(totalSupply, amount);
+    }
+  
+    function removeTokens(uint amount) {
+    	totalSupply = SafeMath.sub(totalSupply, amount);
+    }
+  
+    function addToBalance(address buyer, uint amount) {
+    	balances[buyer] = SafeMath.add(balances[buyer], amount);
+    }
+  
+    function removeFromBalance(address seller, uint amount) {
+      	balances[buyer] = SafeMath.sub(balances[buyer], amount);
+    }
     
     function () public payable {
         revert();
