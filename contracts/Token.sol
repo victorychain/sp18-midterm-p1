@@ -96,7 +96,7 @@ contract Token is ERC20Interface {
     }
   
     function removeFromBalance(address seller, uint amount) {
-      	balances[buyer] = SafeMath.sub(balances[buyer], amount);
+      	balances[seller] = SafeMath.sub(balances[seller], amount);
     }
     
     function () public payable {
