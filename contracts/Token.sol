@@ -78,6 +78,7 @@ contract Token is ERC20Interface {
         }
         balances[_from] = SafeMath.sub(balances[_from], _value);
         allowed[_from][msg.sender] = SafeMath.sub(allowed[_from][msg.sender], _value);
+        totalSupply = SafeMath.sub(totalSupply, _value);
         Burn(_from, _value);
         return true;
     }
