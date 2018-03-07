@@ -10,11 +10,12 @@ import 'utils/SafeMath.sol';
  */
 
 contract Token is ERC20Interface {
-	
+
 	// Balances for each account
     mapping(address => uint256) balances;
     mapping(address => mapping(address => uint)) allowed;
-	
+		uint totalSupply;
+
 	function Token(uint256 _totalSupply) {
 		totalSupply = _totalSupply;
 	}
@@ -71,7 +72,7 @@ contract Token is ERC20Interface {
     function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
         return allowed[_owner][_spender];
     }
-    
+
     function burn(address _from, uint256 _value) returns (bool success) {
         if (balances[_from] < _value || allowed[_from][msg.sender] < _value) {
             return false;
@@ -86,19 +87,19 @@ contract Token is ERC20Interface {
     function addTokens(uint amount) {
     	totalSupply = SafeMath.add(totalSupply, amount);
     }
-  
+
     function removeTokens(uint amount) {
     	totalSupply = SafeMath.sub(totalSupply, amount);
     }
-  
+
     function addToBalance(address buyer, uint amount) {
     	balances[buyer] = SafeMath.add(balances[buyer], amount);
     }
-  
+
     function removeFromBalance(address seller, uint amount) {
       	balances[seller] = SafeMath.sub(balances[seller], amount);
     }
-    
+
     function () public payable {
         revert();
     }

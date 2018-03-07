@@ -1,21 +1,10 @@
-pragma solidity ^0.4.15;
-
-import './Queue.sol';
-import './Token.sol';
-
-/**
- * @title Crowdsale
- * @dev Contract that deploys `Token.sol`
- * Is timelocked, manages buyer queue, updates balances on `Token.sol`
- */
-
 contract Crowdsale {
 
   address public owner;
   address public token;
   address public queue;
   uint public initialTokens;
-  uint public tokensPerWei;
+  uint public rate;
   uint private totalFunds;
   uint public startTime;
   uint public endTime;
@@ -34,11 +23,11 @@ contract Crowdsale {
    event TokenPurchased(address buyer);
    event TokenSold(address seller);
 
-  function Crowdsale(uint _initialTokens, uint _tokensPerWei, uint duration, uint queueTimecap) {
+  function Crowdsale(uint _initialTokens, uint _rate, uint duration, uint queueTimecap) {
     owner = msg.sender;
     startTime = now;
     endTime = startTime + duration;
-    tokensPerWei = _tokensPerWei;
+    rate = _rate;
     initialTokens = _initialTokens;
 
     token = new Token(initialTokens);
@@ -57,14 +46,14 @@ contract Crowdsale {
   }
 
   function enterQueue() timeConstraint {
-      line = Queue.at(queue);
+      address line = Queue.at(queue);
 
       require(line.qsize() < 5);
       line.enqueue(msg.sender);
   }
 
   function checkTime() timeConstraint {
-      line = Queue.at(queue);
+      address line = Queue.at(queue);
       if (line.checkTime) {
           line.dequeue;
       }
@@ -76,21 +65,29 @@ contract Crowdsale {
 
   function buyTokens(uint amount) public timeConstraint {
     //increment token balance for msg.sender in Token.sol
-    line = Queue.at(queue);
+    address line = Queue.at(queue);
     require(line.getFirst() == msg.sender && line.qsize() > 1);
 
-    tokensSold += amount;
-    token.addToBalance(msg.sender, amount);
+    uint paidWei = msg.value;
+    if (amount <= paidWei * rate) {
+        tokensSold += amount;
+        token.addToBalance(msg.sender, amount);
+        totalFunds += paidWei;
 
-    line.dequeue();
+        line.dequeue();
 
-    TokenPurchased(msg.sender);
+        TokenPurchased(msg.sender);
+    }
+
   }
 
   function refundTokens(uint amount) public timeConstraint {
     //decrement token balance for msg.sender in Token.sol
     tokensSold -= amount;
     token.removeFromBalance(msg.sender, amount);
+    uint returnWei = amount / rate;
+    msg.sender.transfer(returnWei);
+    totalFunds -= returnWei;
     TokenSold(msg.sender);
   }
 
