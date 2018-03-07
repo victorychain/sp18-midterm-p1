@@ -9,12 +9,13 @@ import 'utils/SafeMath.sol';
  * Is deployed by `Crowdsale.sol`, keeps track of balances, etc.
  */
 
-contract Token is ERC20Interface {
+contract Token {
 
 	// Balances for each account
     mapping(address => uint256) balances;
     mapping(address => mapping(address => uint)) allowed;
-		uint totalSupply;
+	uint totalSupply;
+
 
 	function Token(uint256 _totalSupply) {
 		totalSupply = _totalSupply;
