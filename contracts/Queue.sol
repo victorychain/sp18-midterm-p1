@@ -32,7 +32,6 @@ size:
 contract Queue {
 	/* State variables */
 	uint8 size = 5;
-	// YOUR CODE HERE
 	uint beginningIndex = 0;
 	uint endingIndex = 0;
 	mapping(uint => address) indexToAddress;
@@ -41,12 +40,10 @@ contract Queue {
 	uint public timeCap;
 
 	/* Add events */
-	// YOUR CODE HERE
 	event QueueRemoved(address removedQueueAdress);
 	event QueueAdded(address addedQueueAdress);
 
 	/* Add constructor */
-	// YOUR CODE HERE
 	// [Later]
 	function Queue(uint timeCapI) {
 		timeCap = timeCapI;
@@ -54,7 +51,6 @@ contract Queue {
 
 	/* Returns the number of people waiting in line */
 	function qsize() constant returns(uint8) {
-		// YOUR CODE HERE
 		if (endingIndex < beginningIndex) {
 			return endingIndex + size - beginningIndex;
 		} else {
@@ -65,13 +61,11 @@ contract Queue {
 
 	/* Returns whether the queue is empty or not */
 	function empty() constant returns(bool) {
-		// YOUR CODE HERE
 		return endingIndex == beginningIndex;
 	}
-	
+
 	/* Returns the address of the person in the front of the queue */
 	function getFirst() constant returns(address) {
-		// YOUR CODE HERE
 		if (qsize == 1) {
 			return;
 		}
@@ -79,10 +73,9 @@ contract Queue {
 		dequeue();
 		return res;
 	}
-	
+
 	/* Allows `msg.sender` to check their position in the queue */
 	function checkPlace() constant returns(uint8) {
-		// YOUR CODE HERE
 		uint indexPosition = addressToIndex[msg.sender];
 		if (indexPosition == -1) {
 			return -1
@@ -93,12 +86,11 @@ contract Queue {
 		}
 
 	}
-	
+
 	/* Allows anyone to expel the first person in line if their time
 	 * limit is up
 	 */
 	function checkTime() {
-		// YOUR CODE HERE
 
 			uint currentIndex = beginningIndex;
 			address currentAddress = indexToAddress[currentIndex];
@@ -114,12 +106,11 @@ contract Queue {
 			}
 
 	}
-	
+
 	/* Removes the first person in line; either when their time is up or when
 	 * they are done with their purchase
 	 */
 	function dequeue() {
-		// YOUR CODE HERE
 		if (qsize == 1) {
 			return;
 		}
@@ -131,7 +122,6 @@ contract Queue {
 
 	/* Places `addr` in the first empty position in the queue */
 	function enqueue(address addr) {
-		// YOUR CODE HERE
 
 		// if the queue is already full, don't do it.
 		if (qsize() == size) {

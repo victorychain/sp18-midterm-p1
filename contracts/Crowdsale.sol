@@ -13,6 +13,7 @@ contract Crowdsale {
 
   address public owner;
   address public token;
+  address public queue;
   uint public initialTokens;
   uint public tokensPerWei;
   uint private totalFunds;
@@ -33,7 +34,7 @@ contract Crowdsale {
    event TokenPurchased(address buyer);
    event TokenSold(address seller);
 
-  function Crowdsale(uint _initialTokens, uint _tokensPerWei, uint duration) {
+  function Crowdsale(uint _initialTokens, uint _tokensPerWei, uint duration, uint queueTimecap) {
     owner = msg.sender;
     startTime = now;
     endTime = startTime + duration;
@@ -41,6 +42,7 @@ contract Crowdsale {
     initialTokens = _initialTokens;
 
     token = new Token(initialTokens);
+    queue = new Queue(queueTimecap);
 
   }
 
@@ -54,10 +56,34 @@ contract Crowdsale {
     token.removeTokens(amount);
   }
 
+  function enterQueue() timeConstraint {
+      line = Queue.at(queue);
+
+      require(line.qsize() < 5);
+      line.enqueue(msg.sender);
+  }
+
+  function checkTime() timeConstraint {
+      line = Queue.at(queue);
+      if (line.checkTime) {
+          line.dequeue;
+      }
+  }
+
+  function checkPlace() timeConstraint {
+      return Queue.at(queue).checkPlace(msg.sender);
+  }
+
   function buyTokens(uint amount) public timeConstraint {
     //increment token balance for msg.sender in Token.sol
+    line = Queue.at(queue);
+    require(line.getFirst() == msg.sender && line.qsize() > 1);
+
     tokensSold += amount;
     token.addToBalance(msg.sender, amount);
+
+    line.dequeue();
+
     TokenPurchased(msg.sender);
   }
 
