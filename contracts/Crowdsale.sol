@@ -31,21 +31,18 @@ import './Token.sol';
         _;
     }
 
-     event TokenPurchased(address buyer);
-     event TokenSold(address seller);
+    event TokenPurchased(address buyer);
+    event TokenSold(address seller);
 
-    function Crowdsale(uint _initialTokens, uint _rate, uint duration, uint queueTimecap) {
+    function Crowdsale(uint _initialTokens, uint _rate, uint _duration, uint _queueTimecap) {
       owner = msg.sender;
       startTime = now;
-      endTime = startTime + duration;
+      endTime = startTime + _duration;
       rate = _rate;
       initialTokens = _initialTokens;
-      queue = new Queue(queueTimecap);
+      token = new Token(initialTokens);
+      queue = new Queue(_queueTimecap);
 
-    }
-
-    function createToken(uint initialTokens) ownerOnly {
-        token = new Token(initialTokens);
     }
 
     function mintTokens(uint amount) ownerOnly {
