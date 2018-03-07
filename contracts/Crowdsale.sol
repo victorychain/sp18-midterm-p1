@@ -1,7 +1,7 @@
 pragma solidity ^0.4.15;
 
- import './Queue.sol';
- import './Token.sol';
+import './Queue.sol';
+import './Token.sol';
 
  /**
   * @title Crowdsale
@@ -9,104 +9,102 @@ pragma solidity ^0.4.15;
   * Is timelocked, manages buyer queue, updates balances on `Token.sol`
   */
 
-contract Crowdsale {
+  contract Crowdsale {
 
-  address public owner;
-  address public token;
-  address public queue;
-  uint public initialTokens;
-  uint public rate;
-  uint private totalFunds;
-  uint public startTime;
-  uint public endTime;
-  uint public tokensSold;
+    address public owner;
+    Token public token;
+    Queue public queue;
+    uint public initialTokens;
+    uint public rate;
+    uint private totalFunds;
+    uint public startTime;
+    uint public endTime;
+    uint public tokensSold;
 
-  modifier ownerOnly() {
-    require(msg.sender == owner);
-    _;
-  }
-
-  modifier timeConstraint() {
-      require(now > startTime && now < endTime);
+    modifier ownerOnly() {
+      require(msg.sender == owner);
       _;
-  }
+    }
 
-   event TokenPurchased(address buyer);
-   event TokenSold(address seller);
+    modifier timeConstraint() {
+        require(now > startTime && now < endTime);
+        _;
+    }
 
-  function Crowdsale(uint _initialTokens, uint _rate, uint duration, uint queueTimecap) {
-    owner = msg.sender;
-    startTime = now;
-    endTime = startTime + duration;
-    rate = _rate;
-    initialTokens = _initialTokens;
+     event TokenPurchased(address buyer);
+     event TokenSold(address seller);
 
-    token = new Token(initialTokens);
-    queue = new Queue(queueTimecap);
+    function Crowdsale(uint _initialTokens, uint _rate, uint duration, uint queueTimecap) {
+      owner = msg.sender;
+      startTime = now;
+      endTime = startTime + duration;
+      rate = _rate;
+      initialTokens = _initialTokens;
+      queue = new Queue(queueTimecap);
 
-  }
+    }
 
-  function createToken(uint initialTokens) ownerOnly {
-      token = new Token(initialTokens);
-  }
+    function createToken(uint initialTokens) ownerOnly {
+        token = new Token(initialTokens);
+    }
 
-  function mintTokens(uint amount) ownerOnly {
-    //add to totalSupply in Token.sol
-    Token(token).addTokens(amount);
-  }
+    function mintTokens(uint amount) ownerOnly {
+      //add to totalSupply in Token.sol
+      token.addTokens(amount);
+    }
 
-  function burnTokens(uint amount) ownerOnly {
-    //subtract from totalSupply in Token.sol
-    Token(token).removeTokens(amount);
-  }
+    function burnTokens(uint amount) ownerOnly {
+      //subtract from totalSupply in Token.sol
+      token.removeTokens(amount);
+    }
 
-  function enterQueue() timeConstraint {
-      require(Queue(queue).qsize() < 5);
-      Queue(queue).enqueue(msg.sender);
-  }
+    function enterQueue() timeConstraint {
+        require(queue.qsize() < 5);
+        queue.enqueue(msg.sender);
+    }
 
-  function checkTime() timeConstraint {
-      Queue(queue).checkTime;
-  }
+    function checkTime() timeConstraint {
+        queue.checkTime;
+    }
 
-  function checkPlace() timeConstraint {
-      Queue(queue).checkPlace(msg.sender);
-  }
+    function checkPlace() timeConstraint {
+        queue.checkPlace(msg.sender);
+    }
 
-  function buyTokens(uint amount) public timeConstraint {
-    //increment token balance for msg.sender in Token.sol
-    require(Queue(queue).getFirst() == msg.sender && Queue(queue).qsize() > 1);
+    function buyTokens(uint amount) public payable timeConstraint {
+      //increment token balance for msg.sender in Token.sol
+      require(queue.getFirst() == msg.sender && queue.qsize() > 1);
 
-    uint paidWei = msg.value;
-    if (amount <= paidWei * rate) {
-        tokensSold += amount;
-        Token(token).addToBalance(msg.sender, amount);
-        totalFunds += paidWei;
+      uint paidWei = msg.value;
+      if (amount <= paidWei * rate) {
+          tokensSold += amount;
+          token.addToBalance(msg.sender, amount);
+          totalFunds += paidWei;
 
-        Queue(queue).dequeue();
+          Queue(queue).dequeue();
 
-        TokenPurchased(msg.sender);
+          TokenPurchased(msg.sender);
+      }
+
+    }
+
+    function refundTokens(uint amount) public timeConstraint {
+      //decrement token balance for msg.sender in Token.sol
+      tokensSold -= amount;
+      token.removeFromBalance(msg.sender, amount);
+      uint returnWei = amount / rate;
+      msg.sender.transfer(returnWei);
+      totalFunds -= returnWei;
+      TokenSold(msg.sender);
+    }
+
+    function timeRemaining() view returns (uint) {
+      return endTime - now;
+    }
+
+    function sendOwnerFunds() ownerOnly {
+      require(now > endTime);
+      owner.transfer(totalFunds);
     }
 
   }
-
-  function refundTokens(uint amount) public timeConstraint {
-    //decrement token balance for msg.sender in Token.sol
-    tokensSold -= amount;
-    Token(token).removeFromBalance(msg.sender, amount);
-    uint returnWei = amount / rate;
-    msg.sender.transfer(returnWei);
-    totalFunds -= returnWei;
-    TokenSold(msg.sender);
-  }
-
-  function timeRemaining() view returns (uint) {
-    return endTime - startTime;
-  }
-
-  function sendOwnerFunds() ownerOnly {
-    require(now > endTime);
-    owner.transfer(totalFunds);
-  }
-
-}
