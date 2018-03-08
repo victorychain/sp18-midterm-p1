@@ -85,7 +85,7 @@ import './Token.sol';
 
     }
 
-    function refundTokens(uint amount) public timeConstraint {
+    function refundTokens(uint amount) public payable timeConstraint {
       //decrement token balance for msg.sender in Token.sol
       tokensSold -= amount;
       token.removeFromBalance(msg.sender, amount);
