@@ -298,7 +298,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 563,
+          "SourceUnit": 620,
           "absolutePath": "/Users/adityasrivastava/Documents/coding-projects/blockchain/dev-decal/sp18-midterm-p1/contracts/Queue.sol",
           "file": "./Queue.sol",
           "scope": 310,
@@ -313,7 +313,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 951,
+          "SourceUnit": 1008,
           "absolutePath": "/Users/adityasrivastava/Documents/coding-projects/blockchain/dev-decal/sp18-midterm-p1/contracts/Token.sol",
           "file": "./Token.sol",
           "scope": 310,
@@ -332,8 +332,8 @@
             null
           ],
           "contractDependencies": [
-            562,
-            950
+            619,
+            1007
           ],
           "contractKind": "contract",
           "documentation": "@title Crowdsale\n@dev Contract that deploys `Token.sol`\nIs timelocked, manages buyer queue, updates balances on `Token.sol`",
@@ -387,7 +387,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Token",
-                  "referencedDeclaration": 950,
+                  "referencedDeclaration": 1007,
                   "type": "contract Token"
                 },
                 "id": 6,
@@ -415,7 +415,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Queue",
-                  "referencedDeclaration": 562,
+                  "referencedDeclaration": 619,
                   "type": "contract Queue"
                 },
                 "id": 8,
@@ -630,7 +630,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1358,
+                              "referencedDeclaration": 1486,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -671,7 +671,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1355,
+                                      "referencedDeclaration": 1483,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -775,7 +775,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1358,
+                              "referencedDeclaration": 1486,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -819,7 +819,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1357,
+                                      "referencedDeclaration": 1485,
                                       "type": "uint256",
                                       "value": "now"
                                     },
@@ -867,7 +867,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1357,
+                                      "referencedDeclaration": 1485,
                                       "type": "uint256",
                                       "value": "now"
                                     },
@@ -1199,7 +1199,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1355,
+                                  "referencedDeclaration": 1483,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1255,7 +1255,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1357,
+                              "referencedDeclaration": 1485,
                               "type": "uint256",
                               "value": "now"
                             },
@@ -1521,7 +1521,7 @@
                                     "attributes": {
                                       "contractScope": null,
                                       "name": "Token",
-                                      "referencedDeclaration": 950,
+                                      "referencedDeclaration": 1007,
                                       "type": "contract Token"
                                     },
                                     "id": 89,
@@ -1623,7 +1623,7 @@
                                     "attributes": {
                                       "contractScope": null,
                                       "name": "Queue",
-                                      "referencedDeclaration": 562,
+                                      "referencedDeclaration": 619,
                                       "type": "contract Queue"
                                     },
                                     "id": 96,
@@ -1789,7 +1789,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "addTokens",
-                              "referencedDeclaration": 866,
+                              "referencedDeclaration": 923,
                               "type": "function (uint256) external"
                             },
                             "children": [
@@ -1961,7 +1961,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "removeTokens",
-                              "referencedDeclaration": 880,
+                              "referencedDeclaration": 937,
                               "type": "function (uint256) external"
                             },
                             "children": [
@@ -2109,7 +2109,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1358,
+                              "referencedDeclaration": 1486,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -2160,7 +2160,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "qsize",
-                                      "referencedDeclaration": 374,
+                                      "referencedDeclaration": 431,
                                       "type": "function () view external returns (uint256)"
                                     },
                                     "children": [
@@ -2250,7 +2250,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "enqueue",
-                              "referencedDeclaration": 561,
+                              "referencedDeclaration": 618,
                               "type": "function (address) external"
                             },
                             "children": [
@@ -2291,7 +2291,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1355,
+                                  "referencedDeclaration": 1483,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -2397,7 +2397,7 @@
                           "isPure": false,
                           "lValueRequested": false,
                           "member_name": "checkTime",
-                          "referencedDeclaration": 482,
+                          "referencedDeclaration": 539,
                           "type": "function () external"
                         },
                         "children": [
@@ -2528,7 +2528,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "checkPlace",
-                              "referencedDeclaration": 441,
+                              "referencedDeclaration": 498,
                               "type": "function (address) view external returns (uint256)"
                             },
                             "children": [
@@ -2569,7 +2569,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1355,
+                                  "referencedDeclaration": 1483,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -2715,7 +2715,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1358,
+                              "referencedDeclaration": 1486,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -2781,7 +2781,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "getFirst",
-                                          "referencedDeclaration": 405,
+                                          "referencedDeclaration": 462,
                                           "type": "function () external returns (address)"
                                         },
                                         "children": [
@@ -2827,7 +2827,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1355,
+                                          "referencedDeclaration": 1483,
                                           "type": "msg",
                                           "value": "msg"
                                         },
@@ -2888,7 +2888,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "qsize",
-                                          "referencedDeclaration": 374,
+                                          "referencedDeclaration": 431,
                                           "type": "function () view external returns (uint256)"
                                         },
                                         "children": [
@@ -3004,7 +3004,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1355,
+                              "referencedDeclaration": 1483,
                               "type": "msg",
                               "value": "msg"
                             },
@@ -3196,7 +3196,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "addToBalance",
-                                      "referencedDeclaration": 900,
+                                      "referencedDeclaration": 957,
                                       "type": "function (address,uint256) external"
                                     },
                                     "children": [
@@ -3237,7 +3237,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1355,
+                                          "referencedDeclaration": 1483,
                                           "type": "msg",
                                           "value": "msg"
                                         },
@@ -3355,7 +3355,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "dequeue",
-                                      "referencedDeclaration": 515,
+                                      "referencedDeclaration": 572,
                                       "type": "function () external"
                                     },
                                     "children": [
@@ -3378,14 +3378,14 @@
                                             "attributes": {
                                               "argumentTypes": [
                                                 {
-                                                  "typeIdentifier": "t_contract$_Queue_$562",
+                                                  "typeIdentifier": "t_contract$_Queue_$619",
                                                   "typeString": "contract Queue"
                                                 }
                                               ],
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 562,
+                                              "referencedDeclaration": 619,
                                               "type": "type(contract Queue)",
                                               "value": "Queue"
                                             },
@@ -3481,7 +3481,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1355,
+                                          "referencedDeclaration": 1483,
                                           "type": "msg",
                                           "value": "msg"
                                         },
@@ -3694,7 +3694,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "removeFromBalance",
-                              "referencedDeclaration": 920,
+                              "referencedDeclaration": 977,
                               "type": "function (address,uint256) external"
                             },
                             "children": [
@@ -3735,7 +3735,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1355,
+                                  "referencedDeclaration": 1483,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -3910,7 +3910,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1355,
+                                      "referencedDeclaration": 1483,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -4057,7 +4057,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1355,
+                                  "referencedDeclaration": 1483,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -4192,7 +4192,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1357,
+                              "referencedDeclaration": 1485,
                               "type": "uint256",
                               "value": "now"
                             },
@@ -4311,7 +4311,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1358,
+                              "referencedDeclaration": 1486,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -4340,7 +4340,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1357,
+                                  "referencedDeclaration": 1485,
                                   "type": "uint256",
                                   "value": "now"
                                 },
@@ -4478,7 +4478,13 @@
     "name": "solc",
     "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1520549818174": {
+      "events": {},
+      "links": {},
+      "address": "0xc87f6d2cc903fe151ccd1c8491ded442465aec00"
+    }
+  },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-03-08T23:02:54.090Z"
+  "updatedAt": "2018-03-08T23:23:56.948Z"
 }
