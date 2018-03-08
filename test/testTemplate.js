@@ -26,32 +26,32 @@ contract('testTemplate', function(accounts) {
   beforeEach(async function() {
     // YOUR CODE HERE
     crowdsale1 = await Crowdsale.new(
-      _tokenInitialAmount,
-      _rate,
-      _duration,
-      _queueTimecap
+      args._tokenInitialAmount,
+      args._rate,
+      args._duration,
+      args._queueTimecap
     );
-    user1 = await User.new({ value: args._value });
-    user2 = await User.new({ value: args._value });
-    user3 = await User.new({ value: args._value });
-    await user1.setTarget(crowdsale1.address);
-    await user1.setRate(_rate);
-    await user2.setTarget(crowdsale1.address);
-    await user2.setRate(_rate);
-    await user3.setTarget(crowdsale1.address);
-    await user3.setRate(_rate);
+    smallUser1 = await User.new({ value: args._value });
+    bigUser2 = await User.new({ value: args._value });
+    bigUser3 = await User.new({ value: args._value });
+    await smallUser1.setTarget(crowdsale1.address);
+    await smallUser1.setRate(args._rate);
+    await bigUser2.setTarget(crowdsale1.address);
+    await bigUser2.setRate(args._rate);
+    await bigUser3.setTarget(crowdsale1.address);
+    await bigUser3.setRate(args._rate);
   });
 
   describe('~Basic Crowdsale-User connection check~', function() {
-    it('check if all users are locked with the crowsale.', async function() {
-      let cleanBalance = await user1.getBalance.call();
+    it('check if all users are locked with the crowdsale.', async function() {
+      let cleanBalance = await smallUser1.getBalance.call();
       assert.equal(
         cleanBalance.valueOf(),
         args._value,
         'balance for user set correctly'
       );
 
-      let targetAddress = await user1.getTargetCrowdSale();
+      let targetAddress = await smallUser1.getTargetCrowdSale();
       assert.equal(
         targetAddress,
         crowdsale1.address,
@@ -99,16 +99,16 @@ contract('testTemplate', function(accounts) {
   describe('~Token check in user side~', function() {
     beforeEach(async function() {
       let queue1 = crowdsale1.queue;
-      await user1.enterQueue();
-      await user2.enterQueue();
+      await smallUser1.enterQueue();
+      await bigUser2.enterQueue();
     });
 
     it('check if buyToken works.', async function() {
-      await user1.buyToken(args._tokensIncrement);
+      await smallUser1.buyToken(args._tokensIncrement);
       let balanceOfUser1FromCrowSale = crowdsale1.token
-        .balanceOf(user1.address)
+        .balanceOf(smallUser1.address)
         .call();
-      let balanceOfUser1FromUser = user1.getMyTokenBalance.call();
+      let balanceOfUser1FromUser = smallUser1.getMyTokenBalance.call();
       assert.equal(
         balanceOfUser1FromCrowSale,
         balanceOfUser1FromUser,
@@ -117,11 +117,11 @@ contract('testTemplate', function(accounts) {
     });
 
     it('check if refundTokens works.', async function() {
-      await user1.buyToken(args._tokensIncrement);
-      await user2.buyToken(args._tokensIncrement);
-      await user1.refundToken(args._tokensIncrement);
+      await smallUser1.buyToken(args._tokensIncrement);
+      await bigUser2.buyToken(args._tokensIncrement);
+      await smallUser1.refundToken(args._tokensIncrement);
       let balanceOfUser1FromCrowSale = crowdsale1.token
-        .balanceOf(user1.address)
+        .balanceOf(smallUser1.address)
         .call();
       assert.isBelow(
         balanceOfUser1FromCrowSale,
