@@ -179,11 +179,11 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.15;\r\n\r\n/**\r\n * @title ERC20Interface\r\n * @dev ERC20 token standard: https://github.com/ethereum/EIPs/issues/20\r\n * As seen here: https://github.com/ConsenSys/Tokens/blob/master/contracts/Token.sol\r\n */\r\ncontract ERC20Interface {\r\n\t/* This is a slight change to the ERC20 base standard.\r\n\t\r\n    function totalSupply() constant returns (uint256 supply);\r\n    is replaced with:\r\n    uint256 public totalSupply;\r\n\r\n    This automatically creates a getter function for the totalSupply.\r\n    This is moved to the base contract since public getter functions are not\r\n    currently recognised as an implementation of the matching abstract\r\n    function by the compiler.\r\n    */\r\n    /// total amount of tokens\r\n    uint256 public totalSupply;\r\n\r\n    /// @param _owner The address from which the balance will be retrieved\r\n    /// @return The balance\r\n    function balanceOf(address _owner) constant returns (uint256 balance);\r\n\r\n    /// @notice send `_value` token to `_to` from `msg.sender`\r\n    /// @param _to The address of the recipient\r\n    /// @param _value The amount of token to be transferred\r\n    /// @return Whether the transfer was successful or not\r\n    function transfer(address _to, uint256 _value) returns (bool success);\r\n\r\n    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`\r\n    /// @param _from The address of the sender\r\n    /// @param _to The address of the recipient\r\n    /// @param _value The amount of token to be transferred\r\n    /// @return Whether the transfer was successful or not\r\n    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);\r\n\r\n    /// @notice `msg.sender` approves `_spender` to spend `_value` tokens\r\n    /// @param _spender The address of the account able to transfer the tokens\r\n    /// @param _value The amount of tokens to be approved for transfer\r\n    /// @return Whether the approval was successful or not\r\n    function approve(address _spender, uint256 _value) returns (bool success);\r\n\r\n    /// @param _owner The address of the account owning tokens\r\n    /// @param _spender The address of the account able to transfer the tokens\r\n    /// @return Amount of remaining tokens allowed to spent\r\n    function allowance(address _owner, address _spender) constant returns (uint256 remaining);\r\n\r\n    event Transfer(address indexed _from, address indexed _to, uint256 _value);\r\n    event Approval(address indexed _owner, address indexed _spender, uint256 _value);\r\n}\r\n",
-  "sourcePath": "C:\\Users\\PolarBear2\\Project\\testing\\contracts\\interfaces\\ERC20Interface.sol",
+  "source": "pragma solidity ^0.4.15;\n\n/**\n * @title ERC20Interface\n * @dev ERC20 token standard: https://github.com/ethereum/EIPs/issues/20\n * As seen here: https://github.com/ConsenSys/Tokens/blob/master/contracts/Token.sol\n */\ncontract ERC20Interface {\n\t/* This is a slight change to the ERC20 base standard.\n\t\n    function totalSupply() constant returns (uint256 supply);\n    is replaced with:\n    uint256 public totalSupply;\n\n    This automatically creates a getter function for the totalSupply.\n    This is moved to the base contract since public getter functions are not\n    currently recognised as an implementation of the matching abstract\n    function by the compiler.\n    */\n    /// total amount of tokens\n    uint256 public totalSupply;\n\n    /// @param _owner The address from which the balance will be retrieved\n    /// @return The balance\n    function balanceOf(address _owner) constant returns (uint256 balance);\n\n    /// @notice send `_value` token to `_to` from `msg.sender`\n    /// @param _to The address of the recipient\n    /// @param _value The amount of token to be transferred\n    /// @return Whether the transfer was successful or not\n    function transfer(address _to, uint256 _value) returns (bool success);\n\n    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`\n    /// @param _from The address of the sender\n    /// @param _to The address of the recipient\n    /// @param _value The amount of token to be transferred\n    /// @return Whether the transfer was successful or not\n    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);\n\n    /// @notice `msg.sender` approves `_spender` to spend `_value` tokens\n    /// @param _spender The address of the account able to transfer the tokens\n    /// @param _value The amount of tokens to be approved for transfer\n    /// @return Whether the approval was successful or not\n    function approve(address _spender, uint256 _value) returns (bool success);\n\n    /// @param _owner The address of the account owning tokens\n    /// @param _spender The address of the account able to transfer the tokens\n    /// @return Amount of remaining tokens allowed to spent\n    function allowance(address _owner, address _spender) constant returns (uint256 remaining);\n\n    event Transfer(address indexed _from, address indexed _to, uint256 _value);\n    event Approval(address indexed _owner, address indexed _spender, uint256 _value);\n}\n",
+  "sourcePath": "/Users/adityasrivastava/Documents/coding-projects/blockchain/dev-decal/sp18-midterm-p1/contracts/interfaces/ERC20Interface.sol",
   "ast": {
     "attributes": {
-      "absolutePath": "/C/Users/PolarBear2/Project/testing/contracts/interfaces/ERC20Interface.sol",
+      "absolutePath": "/Users/adityasrivastava/Documents/coding-projects/blockchain/dev-decal/sp18-midterm-p1/contracts/interfaces/ERC20Interface.sol",
       "exportedSymbols": {
         "ERC20Interface": [
           1305
@@ -213,7 +213,7 @@
             null
           ],
           "contractKind": "contract",
-          "documentation": "@title ERC20Interface\r\n@dev ERC20 token standard: https://github.com/ethereum/EIPs/issues/20\r\nAs seen here: https://github.com/ConsenSys/Tokens/blob/master/contracts/Token.sol\r",
+          "documentation": "@title ERC20Interface\n@dev ERC20 token standard: https://github.com/ethereum/EIPs/issues/20\nAs seen here: https://github.com/ConsenSys/Tokens/blob/master/contracts/Token.sol",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
             1305
@@ -241,12 +241,12 @@
                 },
                 "id": 1242,
                 "name": "ElementaryTypeName",
-                "src": "728:7:5"
+                "src": "708:7:5"
               }
             ],
             "id": 1243,
             "name": "VariableDeclaration",
-            "src": "728:26:5"
+            "src": "708:26:5"
           },
           {
             "attributes": {
@@ -286,17 +286,17 @@
                         },
                         "id": 1244,
                         "name": "ElementaryTypeName",
-                        "src": "887:7:5"
+                        "src": "863:7:5"
                       }
                     ],
                     "id": 1245,
                     "name": "VariableDeclaration",
-                    "src": "887:14:5"
+                    "src": "863:14:5"
                   }
                 ],
                 "id": 1246,
                 "name": "ParameterList",
-                "src": "886:16:5"
+                "src": "862:16:5"
               },
               {
                 "children": [
@@ -319,22 +319,22 @@
                         },
                         "id": 1247,
                         "name": "ElementaryTypeName",
-                        "src": "921:7:5"
+                        "src": "897:7:5"
                       }
                     ],
                     "id": 1248,
                     "name": "VariableDeclaration",
-                    "src": "921:15:5"
+                    "src": "897:15:5"
                   }
                 ],
                 "id": 1249,
                 "name": "ParameterList",
-                "src": "920:17:5"
+                "src": "896:17:5"
               }
             ],
             "id": 1250,
             "name": "FunctionDefinition",
-            "src": "868:70:5"
+            "src": "844:70:5"
           },
           {
             "attributes": {
@@ -374,12 +374,12 @@
                         },
                         "id": 1251,
                         "name": "ElementaryTypeName",
-                        "src": "1198:7:5"
+                        "src": "1168:7:5"
                       }
                     ],
                     "id": 1252,
                     "name": "VariableDeclaration",
-                    "src": "1198:11:5"
+                    "src": "1168:11:5"
                   },
                   {
                     "attributes": {
@@ -400,17 +400,17 @@
                         },
                         "id": 1253,
                         "name": "ElementaryTypeName",
-                        "src": "1211:7:5"
+                        "src": "1181:7:5"
                       }
                     ],
                     "id": 1254,
                     "name": "VariableDeclaration",
-                    "src": "1211:14:5"
+                    "src": "1181:14:5"
                   }
                 ],
                 "id": 1255,
                 "name": "ParameterList",
-                "src": "1197:29:5"
+                "src": "1167:29:5"
               },
               {
                 "children": [
@@ -433,22 +433,22 @@
                         },
                         "id": 1256,
                         "name": "ElementaryTypeName",
-                        "src": "1236:4:5"
+                        "src": "1206:4:5"
                       }
                     ],
                     "id": 1257,
                     "name": "VariableDeclaration",
-                    "src": "1236:12:5"
+                    "src": "1206:12:5"
                   }
                 ],
                 "id": 1258,
                 "name": "ParameterList",
-                "src": "1235:14:5"
+                "src": "1205:14:5"
               }
             ],
             "id": 1259,
             "name": "FunctionDefinition",
-            "src": "1180:70:5"
+            "src": "1150:70:5"
           },
           {
             "attributes": {
@@ -488,12 +488,12 @@
                         },
                         "id": 1260,
                         "name": "ElementaryTypeName",
-                        "src": "1600:7:5"
+                        "src": "1563:7:5"
                       }
                     ],
                     "id": 1261,
                     "name": "VariableDeclaration",
-                    "src": "1600:13:5"
+                    "src": "1563:13:5"
                   },
                   {
                     "attributes": {
@@ -514,12 +514,12 @@
                         },
                         "id": 1262,
                         "name": "ElementaryTypeName",
-                        "src": "1615:7:5"
+                        "src": "1578:7:5"
                       }
                     ],
                     "id": 1263,
                     "name": "VariableDeclaration",
-                    "src": "1615:11:5"
+                    "src": "1578:11:5"
                   },
                   {
                     "attributes": {
@@ -540,17 +540,17 @@
                         },
                         "id": 1264,
                         "name": "ElementaryTypeName",
-                        "src": "1628:7:5"
+                        "src": "1591:7:5"
                       }
                     ],
                     "id": 1265,
                     "name": "VariableDeclaration",
-                    "src": "1628:14:5"
+                    "src": "1591:14:5"
                   }
                 ],
                 "id": 1266,
                 "name": "ParameterList",
-                "src": "1599:44:5"
+                "src": "1562:44:5"
               },
               {
                 "children": [
@@ -573,22 +573,22 @@
                         },
                         "id": 1267,
                         "name": "ElementaryTypeName",
-                        "src": "1653:4:5"
+                        "src": "1616:4:5"
                       }
                     ],
                     "id": 1268,
                     "name": "VariableDeclaration",
-                    "src": "1653:12:5"
+                    "src": "1616:12:5"
                   }
                 ],
                 "id": 1269,
                 "name": "ParameterList",
-                "src": "1652:14:5"
+                "src": "1615:14:5"
               }
             ],
             "id": 1270,
             "name": "FunctionDefinition",
-            "src": "1578:89:5"
+            "src": "1541:89:5"
           },
           {
             "attributes": {
@@ -628,12 +628,12 @@
                         },
                         "id": 1271,
                         "name": "ElementaryTypeName",
-                        "src": "1979:7:5"
+                        "src": "1936:7:5"
                       }
                     ],
                     "id": 1272,
                     "name": "VariableDeclaration",
-                    "src": "1979:16:5"
+                    "src": "1936:16:5"
                   },
                   {
                     "attributes": {
@@ -654,17 +654,17 @@
                         },
                         "id": 1273,
                         "name": "ElementaryTypeName",
-                        "src": "1997:7:5"
+                        "src": "1954:7:5"
                       }
                     ],
                     "id": 1274,
                     "name": "VariableDeclaration",
-                    "src": "1997:14:5"
+                    "src": "1954:14:5"
                   }
                 ],
                 "id": 1275,
                 "name": "ParameterList",
-                "src": "1978:34:5"
+                "src": "1935:34:5"
               },
               {
                 "children": [
@@ -687,22 +687,22 @@
                         },
                         "id": 1276,
                         "name": "ElementaryTypeName",
-                        "src": "2022:4:5"
+                        "src": "1979:4:5"
                       }
                     ],
                     "id": 1277,
                     "name": "VariableDeclaration",
-                    "src": "2022:12:5"
+                    "src": "1979:12:5"
                   }
                 ],
                 "id": 1278,
                 "name": "ParameterList",
-                "src": "2021:14:5"
+                "src": "1978:14:5"
               }
             ],
             "id": 1279,
             "name": "FunctionDefinition",
-            "src": "1962:74:5"
+            "src": "1919:74:5"
           },
           {
             "attributes": {
@@ -742,12 +742,12 @@
                         },
                         "id": 1280,
                         "name": "ElementaryTypeName",
-                        "src": "2268:7:5"
+                        "src": "2220:7:5"
                       }
                     ],
                     "id": 1281,
                     "name": "VariableDeclaration",
-                    "src": "2268:14:5"
+                    "src": "2220:14:5"
                   },
                   {
                     "attributes": {
@@ -768,17 +768,17 @@
                         },
                         "id": 1282,
                         "name": "ElementaryTypeName",
-                        "src": "2284:7:5"
+                        "src": "2236:7:5"
                       }
                     ],
                     "id": 1283,
                     "name": "VariableDeclaration",
-                    "src": "2284:16:5"
+                    "src": "2236:16:5"
                   }
                 ],
                 "id": 1284,
                 "name": "ParameterList",
-                "src": "2267:34:5"
+                "src": "2219:34:5"
               },
               {
                 "children": [
@@ -801,22 +801,22 @@
                         },
                         "id": 1285,
                         "name": "ElementaryTypeName",
-                        "src": "2320:7:5"
+                        "src": "2272:7:5"
                       }
                     ],
                     "id": 1286,
                     "name": "VariableDeclaration",
-                    "src": "2320:17:5"
+                    "src": "2272:17:5"
                   }
                 ],
                 "id": 1287,
                 "name": "ParameterList",
-                "src": "2319:19:5"
+                "src": "2271:19:5"
               }
             ],
             "id": 1288,
             "name": "FunctionDefinition",
-            "src": "2249:90:5"
+            "src": "2201:90:5"
           },
           {
             "attributes": {
@@ -846,12 +846,12 @@
                         },
                         "id": 1289,
                         "name": "ElementaryTypeName",
-                        "src": "2362:7:5"
+                        "src": "2312:7:5"
                       }
                     ],
                     "id": 1290,
                     "name": "VariableDeclaration",
-                    "src": "2362:21:5"
+                    "src": "2312:21:5"
                   },
                   {
                     "attributes": {
@@ -873,12 +873,12 @@
                         },
                         "id": 1291,
                         "name": "ElementaryTypeName",
-                        "src": "2385:7:5"
+                        "src": "2335:7:5"
                       }
                     ],
                     "id": 1292,
                     "name": "VariableDeclaration",
-                    "src": "2385:19:5"
+                    "src": "2335:19:5"
                   },
                   {
                     "attributes": {
@@ -900,22 +900,22 @@
                         },
                         "id": 1293,
                         "name": "ElementaryTypeName",
-                        "src": "2406:7:5"
+                        "src": "2356:7:5"
                       }
                     ],
                     "id": 1294,
                     "name": "VariableDeclaration",
-                    "src": "2406:14:5"
+                    "src": "2356:14:5"
                   }
                 ],
                 "id": 1295,
                 "name": "ParameterList",
-                "src": "2361:60:5"
+                "src": "2311:60:5"
               }
             ],
             "id": 1296,
             "name": "EventDefinition",
-            "src": "2347:75:5"
+            "src": "2297:75:5"
           },
           {
             "attributes": {
@@ -945,12 +945,12 @@
                         },
                         "id": 1297,
                         "name": "ElementaryTypeName",
-                        "src": "2443:7:5"
+                        "src": "2392:7:5"
                       }
                     ],
                     "id": 1298,
                     "name": "VariableDeclaration",
-                    "src": "2443:22:5"
+                    "src": "2392:22:5"
                   },
                   {
                     "attributes": {
@@ -972,12 +972,12 @@
                         },
                         "id": 1299,
                         "name": "ElementaryTypeName",
-                        "src": "2467:7:5"
+                        "src": "2416:7:5"
                       }
                     ],
                     "id": 1300,
                     "name": "VariableDeclaration",
-                    "src": "2467:24:5"
+                    "src": "2416:24:5"
                   },
                   {
                     "attributes": {
@@ -999,32 +999,32 @@
                         },
                         "id": 1301,
                         "name": "ElementaryTypeName",
-                        "src": "2493:7:5"
+                        "src": "2442:7:5"
                       }
                     ],
                     "id": 1302,
                     "name": "VariableDeclaration",
-                    "src": "2493:14:5"
+                    "src": "2442:14:5"
                   }
                 ],
                 "id": 1303,
                 "name": "ParameterList",
-                "src": "2442:66:5"
+                "src": "2391:66:5"
               }
             ],
             "id": 1304,
             "name": "EventDefinition",
-            "src": "2428:81:5"
+            "src": "2377:81:5"
           }
         ],
         "id": 1305,
         "name": "ContractDefinition",
-        "src": "224:2288:5"
+        "src": "217:2243:5"
       }
     ],
     "id": 1306,
     "name": "SourceUnit",
-    "src": "0:2514:5"
+    "src": "0:2461:5"
   },
   "compiler": {
     "name": "solc",
@@ -1032,5 +1032,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-03-08T23:07:01.526Z"
+  "updatedAt": "2018-03-08T23:16:38.454Z"
 }
